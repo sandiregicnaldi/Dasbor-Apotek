@@ -1,0 +1,299 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Thermal Receipt - Apotek Core</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#5c5f60",
+                      "on-primary-container": "#e3fffe",
+                      "inverse-surface": "#2c3131",
+                      "secondary-fixed": "#e1e3e4",
+                      "tertiary-fixed-dim": "#ffb692",
+                      "surface-container-highest": "#dfe3e2",
+                      "on-secondary": "#ffffff",
+                      "status-success": "#10b981",
+                      "on-surface": "#181c1c",
+                      "on-secondary-fixed": "#191c1d",
+                      "tertiary-fixed": "#ffdbcb",
+                      "primary-container": "#008080",
+                      "on-tertiary-fixed-variant": "#733512",
+                      "surface-container-high": "#e5e9e8",
+                      "on-error-container": "#93000a",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#e1e3e4",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-container": "#fff9f7",
+                      "border-subtle": "#e9ecef",
+                      "error": "#ba1a1a",
+                      "outline-variant": "#bdc9c8",
+                      "status-critical": "#dc3545",
+                      "tertiary-container": "#a96039",
+                      "surface-bright": "#f6faf9",
+                      "on-primary-fixed": "#002020",
+                      "on-tertiary": "#ffffff",
+                      "status-warning": "#f59e0b",
+                      "background": "#f6faf9",
+                      "secondary-fixed-dim": "#c5c7c8",
+                      "surface-variant": "#dfe3e2",
+                      "inverse-primary": "#76d6d5",
+                      "surface-tint": "#006a6a",
+                      "on-secondary-container": "#626566",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "surface": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#edf2f1",
+                      "outline": "#000000",
+                      "on-background": "#000000",
+                      "medical-blue": "#0056b3",
+                      "on-error": "#ffffff",
+                      "primary": "#000000",
+                      "tertiary": "#8b4823",
+                      "on-surface-variant": "#000000",
+                      "surface-dim": "#d7dbda",
+                      "primary-fixed-dim": "#76d6d5",
+                      "surface-container-low": "#f0f4f3",
+                      "on-secondary-fixed-variant": "#454748",
+                      "primary-fixed": "#93f2f2",
+                      "data-surface": "#ffffff",
+                      "on-tertiary-fixed": "#341100",
+                      "surface-container": "#ebefee"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
+                      "full": "0px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-page": "24px",
+                      "density-high": "8px",
+                      "gutter": "16px",
+                      "density-tight": "4px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "geist", "sans-serif"
+                      ],
+                      "body-lg": [
+                              "jetbrainsMono", "monospace"
+                      ],
+                      "body-md": [
+                              "jetbrainsMono", "monospace"
+                      ],
+                      "headline-lg-mobile": [
+                              "geist", "sans-serif"
+                      ],
+                      "display-lg": [
+                              "geist", "sans-serif"
+                      ],
+                      "label-caps": [
+                              "geist", "sans-serif"
+                      ],
+                      "data-mono": [
+                              "jetbrainsMono", "monospace"
+                      ],
+                      "headline-md": [
+                              "geist", "sans-serif"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "11px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
+        body {
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .receipt-container {
+            width: 80mm; /* Standard thermal printer width */
+            background-color: #ffffff;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* Minimalist, monochrome strictly enforced via Tailwind config overrides in script */
+        }
+
+        .dashed-line {
+            border-top: 1px dashed #000;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        /* Enforce JetBrains Mono for all data */
+        .data-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface bg-background">
+<div class="receipt-container text-data-mono font-data-mono">
+<!-- Header -->
+<div class="text-center mb-4">
+<h1 class="font-bold text-lg mb-1">APOTEK CORE</h1>
+<p class="">Jl. Kesehatan No. 123, Jakarta</p>
+<p class="">Tel: (021) 555-0198</p>
+<p class="mt-2">TXN: #TRX-9982-A4</p>
+<p class="">Date: 2023-10-27 14:32:05</p>
+<p class="">Cashier: Admin User</p>
+</div>
+<div class="dashed-line"></div>
+<!-- Body / Items -->
+<div class="w-full mb-4 flex flex-col gap-2">
+<!-- Item 1 -->
+<div class="w-full">
+<div class="flex justify-between font-bold">
+<span class="">Paracetamol 500mg Strip</span>
+<span class="">Rp 15.000</span>
+</div>
+<div class="flex flex-col text-[10px] text-gray-700">
+<span class="">SKU: MED-001 | BATCH: B23991</span>
+<div class="flex justify-between w-1/2">
+<span class="">2 x 7.500</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="w-full mt-1">
+<div class="flex justify-between font-bold">
+<span class="">Amoxicillin 250mg Caps</span>
+<span class="">Rp 45.000</span>
+</div>
+<div class="flex flex-col text-[10px] text-gray-700">
+<span class="">SKU: MED-045 | BATCH: A88210</span>
+<div class="flex justify-between w-1/2">
+<span class="">1 x 45.000</span>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="w-full mt-1">
+<div class="flex justify-between font-bold">
+<span class="">Vitamin C 1000mg Effervescent</span>
+<span class="">Rp 38.500</span>
+</div>
+<div class="flex flex-col text-[10px] text-gray-700">
+<span class="">SKU: SUP-112 | BATCH: V90012</span>
+<div class="flex justify-between w-1/2">
+<span class="">1 x 38.500</span>
+</div>
+</div>
+</div>
+</div>
+<div class="dashed-line"></div>
+<!-- Calculation -->
+<div class="w-full mb-4">
+<div class="flex justify-between">
+<span class="">Subtotal</span>
+<span class="">Rp 98.500</span>
+</div>
+<div class="flex justify-between">
+<span class="">Tax (11%)</span>
+<span class="">Rp 10.835</span>
+</div>
+<div class="dashed-line my-1"></div>
+<div class="flex justify-between font-bold text-sm mt-1">
+<span class="">GRAND TOTAL</span>
+<span class="">Rp 109.335</span>
+</div>
+<div class="flex justify-between mt-2">
+<span class="">Cash Tendered</span>
+<span class="">Rp 150.000</span>
+</div>
+<div class="flex justify-between">
+<span class="">Change</span>
+<span class="">Rp 40.665</span>
+</div>
+</div>
+<div class="dashed-line"></div>
+<!-- Footer -->
+<div class="text-center mt-4 flex flex-col items-center">
+<p class="font-bold mb-1">Terima kasih</p>
+<p class="text-[10px] mb-4">Obat yang sudah dibeli<br>tidak dapat ditukar/dikembalikan</p>
+<!-- Cloud Synced Indicator -->
+<div class="flex flex-col items-center mb-4">
+  <p class="text-[10px] mb-2">Scan untuk Struk Digital</p>
+  <div class="w-24 h-24">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX7toK0N5PIqWemVc13ImMPrve4qMH6DflSCdgQE6StN6uThTU4wO1lvxKHvPfDlPlo41hbZXJTADIPiOusLHQD5SatBTkVh3msNfr_lzOtd6Q39ckf8Ksx7nGOsshAZIX6nM_o7yIHyKOZZPAqGzlY6esuPHm6EHzktmFWN-7RQzCT2Po-0vBw-SLQUABHcVOrPepHA3kyeuZCMooB6FfGEc1uA6KH2PsjOdUQK66pyIlKrt8jqc" alt="Digital Receipt QR Code" class="w-full h-full object-contain">
+  </div>
+</div><div class="flex items-center gap-1 text-[9px] border border-black px-2 py-1 bg-white">
+<span class="material-symbols-outlined text-[12px] font-bold" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+<span class="">Cloud Synced</span>
+</div>
+</div>
+</div>
+
+
+</body></html>

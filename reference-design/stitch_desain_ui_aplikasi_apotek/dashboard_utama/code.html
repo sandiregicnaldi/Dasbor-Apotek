@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Utama - Apotek Core</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#626566",
+                        "data-surface": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#a96039",
+                        "surface-dim": "#d7dbda",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#ebefee",
+                        "inverse-primary": "#76d6d5",
+                        "inverse-surface": "#2c3131",
+                        "outline": "#6e7979",
+                        "on-tertiary-container": "#fff9f7",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "on-tertiary-fixed": "#341100",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#191c1d",
+                        "surface-container-high": "#e5e9e8",
+                        "tertiary": "#8b4823",
+                        "background": "#f6faf9",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e1e3e4",
+                        "inverse-on-surface": "#edf2f1",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#76d6d5",
+                        "surface-container-low": "#f0f4f3",
+                        "tertiary-fixed": "#ffdbcb",
+                        "status-success": "#10b981",
+                        "secondary": "#5c5f60",
+                        "surface-variant": "#dfe3e2",
+                        "on-primary-fixed": "#002020",
+                        "surface-tint": "#006a6a",
+                        "border-subtle": "#e9ecef",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#e3fffe",
+                        "on-background": "#181c1c",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "on-secondary-fixed-variant": "#454748",
+                        "outline-variant": "#bdc9c8",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "secondary-fixed-dim": "#c5c7c8",
+                        "surface": "#f6faf9",
+                        "on-surface": "#181c1c",
+                        "primary-fixed": "#93f2f2",
+                        "surface-bright": "#f6faf9",
+                        "surface-container-highest": "#dfe3e2",
+                        "on-surface-variant": "#3e4949",
+                        "status-warning": "#f59e0b",
+                        "primary-container": "#008080",
+                        "medical-blue": "#0056b3",
+                        "primary": "#006565",
+                        "status-critical": "#dc3545",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e1e3e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "density-high": "8px",
+                        "margin-page": "24px",
+                        "density-tight": "4px",
+                        "unit": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg": ["Geist Mono"],
+                        "headline-sm": ["Geist Mono"],
+                        "headline-md": ["Geist Mono"],
+                        "label-caps": ["Geist Mono"],
+                        "body-lg": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Geist Mono"],
+                        "body-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["13px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f8f9fa; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-surface antialiased overflow-x-hidden flex h-screen w-screen">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface-container-lowest text-primary font-body-md text-body-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col h-full py-density-high z-20">
+<div class="px-gutter mb-8 mt-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Apotek Core</h1>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1">V2.0.4-Stable</p>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-2">
+<!-- Active: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold border-r-4 border-primary bg-surface-container-low cursor-pointer active:opacity-80 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container cursor-pointer active:opacity-80 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container cursor-pointer active:opacity-80 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">input</span>
+                Inbound
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container cursor-pointer active:opacity-80 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+                Cashier
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container cursor-pointer active:opacity-80 transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+                Reports
+            </a>
+</div>
+<div class="px-4 mt-auto mb-4">
+<button class="w-full bg-primary-container text-on-primary-container font-data-mono text-data-mono py-3 rounded-none hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Transaction
+            </button>
+</div>
+<div class="px-4 py-4 border-t border-outline-variant flex items-center gap-3">
+<img class="w-10 h-10 object-cover rounded-none border border-outline-variant" data-alt="A small, professional headshot of an administrative user, likely a pharmacist, with a neutral background, in a stark, clinical light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJBXBpmHJbFzSaVesjVfiPzknWYJ2DqGRTlbaMbFTnsG_S7ARcFJzVp6pm4gnu3eEdSMXWMDjNLV4KSO2C0HypYo0ZPvBlEdH7TIWunkaD3GZ4dx1Yx9gEQIBDjpkXA0bTsp8dlcdTvniOLV5tDe1sUTjy2HbyjOryiDWK3vKANVrG5nP2xDrhV8XIhWxdsHSv281oUMkfTV_80xQ7ek2h39qWgCN4lh2I7wF3FBrlwSCA3Atyvp0"/>
+<div>
+<p class="font-data-mono text-data-mono font-bold text-on-surface">Admin User</p>
+<p class="font-data-mono text-data-mono text-on-surface-variant text-[11px]">Pharmacist Profile</p>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-64 w-[calc(100%-16rem)] flex flex-col min-h-screen">
+<!-- TopAppBar (Shared Component) -->
+<header class="bg-surface text-primary font-data-mono text-data-mono fixed top-0 right-0 left-64 h-16 border-b border-outline-variant flex justify-between items-center px-margin-page w-[calc(100%-16rem)] z-10 transition-all duration-200">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary hidden md:block">Pharmacy Systems</h2>
+<!-- Cloud Sync Status Indicator -->
+<div class="flex items-center gap-2 ml-4 border-l border-outline-variant pl-4">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="text-on-surface-variant text-[12px]">Cloud Synced</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+                        Sync Now
+                    </button>
+<span class="text-on-surface-variant">Cloud Online</span>
+</div>
+<!-- Icon Actions -->
+<div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="flex-1 mt-16 p-margin-page overflow-y-auto">
+<div class="mb-6 flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-1">System Overview</h2>
+<p class="font-data-mono text-data-mono text-on-surface-variant">Operational metrics and alerts</p>
+</div>
+<div class="text-right">
+<p class="font-data-mono text-data-mono text-on-surface-variant uppercase">Last Update</p>
+<p class="font-data-mono text-data-mono font-bold text-on-surface" id="live-time">14:32:05 WIB</p>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-density-high">
+<!-- Metrics Row (Top) -->
+<div class="col-span-12 grid grid-cols-3 gap-density-high mb-4">
+<!-- Metric 1: Total Products -->
+<div class="bg-data-surface border border-outline-variant p-4 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Total Products (Active)</span>
+<span class="material-symbols-outlined text-outline">inventory_2</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-data-mono text-display-lg text-on-surface">4,821</span>
+<span class="font-data-mono text-data-mono text-status-success flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12</span>
+</div>
+</div>
+<!-- Metric 2: Asset Value -->
+<div class="bg-data-surface border border-outline-variant p-4 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Current Asset Value</span>
+<span class="material-symbols-outlined text-outline">account_balance_wallet</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-data-mono text-display-lg text-on-surface">Rp 842.5M</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">Est. Retail</span>
+</div>
+</div>
+<!-- Metric 3: Today's Sales -->
+<div class="bg-data-surface border border-outline-variant p-4 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Sales Today (Gross)</span>
+<span class="material-symbols-outlined text-outline">receipt_long</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-data-mono text-display-lg text-on-surface">Rp 12.4M</span>
+<span class="font-data-mono text-data-mono text-status-success flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 8.2%</span>
+</div>
+</div>
+</div>
+<!-- Alert Panels (Bottom) -->
+<div class="col-span-12 grid grid-cols-2 gap-density-high">
+<!-- Low Stock Alert Panel -->
+<div class="bg-data-surface border border-outline-variant flex flex-col">
+<div class="bg-surface-container p-3 border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">warning</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase">Low Stock Alert</h3>
+</div>
+<span class="font-data-mono text-data-mono bg-primary-container text-on-primary-container px-2 py-1">4 Items</span>
+</div>
+<div class="p-0 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface font-label-caps text-label-caps text-on-surface-variant uppercase">
+<tr>
+<th class="p-2 border-b border-outline-variant font-normal w-24">SKU</th>
+<th class="p-2 border-b border-outline-variant font-normal">Product Name</th>
+<th class="p-2 border-b border-outline-variant font-normal text-right w-32">Stock Lvl</th>
+<th class="p-2 border-b border-outline-variant font-normal text-right w-20">Act</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low">
+<td class="p-2 text-on-surface-variant">PR-882</td>
+<td class="p-2 text-on-surface truncate max-w-[150px]">Amoxicillin 500mg Strip</td>
+<td class="p-2 text-right">
+<div class="flex items-center justify-end gap-2">
+<div class="w-16 h-1 bg-surface-variant"><div class="h-1 bg-status-warning w-1/4"></div></div>
+<span class="text-status-warning font-bold">12</span>
+</div>
+</td>
+<td class="p-2 text-right"><button class="text-primary hover:underline">Order</button></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low">
+<td class="p-2 text-on-surface-variant">PR-104</td>
+<td class="p-2 text-on-surface truncate max-w-[150px]">Paracetamol Syrup 60ml</td>
+<td class="p-2 text-right">
+<div class="flex items-center justify-end gap-2">
+<div class="w-16 h-1 bg-surface-variant"><div class="h-1 bg-status-critical w-[10%]"></div></div>
+<span class="text-status-critical font-bold">3</span>
+</div>
+</td>
+<td class="p-2 text-right"><button class="text-primary hover:underline">Order</button></td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low">
+<td class="p-2 text-on-surface-variant">PR-441</td>
+<td class="p-2 text-on-surface truncate max-w-[150px]">Vitamin C 1000mg Box</td>
+<td class="p-2 text-right">
+<div class="flex items-center justify-end gap-2">
+<div class="w-16 h-1 bg-surface-variant"><div class="h-1 bg-status-warning w-1/3"></div></div>
+<span class="text-status-warning font-bold">18</span>
+</div>
+</td>
+<td class="p-2 text-right"><button class="text-primary hover:underline">Order</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-2 bg-surface border-t border-outline-variant text-center">
+<button class="font-data-mono text-data-mono text-primary hover:underline uppercase text-[11px]">View All Low Stock</button>
+</div>
+</div>
+<!-- Near-Expiry Alert Panel -->
+<div class="bg-data-surface border border-outline-variant flex flex-col">
+<div class="bg-surface-container p-3 border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-warning text-[18px]">event_busy</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface uppercase">Near-Expiry Alert</h3>
+</div>
+<span class="font-data-mono text-data-mono bg-status-warning text-[#000] px-2 py-1 font-bold">3 Batches</span>
+</div>
+<div class="p-0 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface font-label-caps text-label-caps text-on-surface-variant uppercase">
+<tr>
+<th class="p-2 border-b border-outline-variant font-normal w-20">Batch</th>
+<th class="p-2 border-b border-outline-variant font-normal">Product</th>
+<th class="p-2 border-b border-outline-variant font-normal text-right w-24">Expiry</th>
+<th class="p-2 border-b border-outline-variant font-normal text-right w-16">Qty</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<!-- Critical Expiry (Red Left Border simulated) -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low border-l-4 border-l-status-critical">
+<td class="p-2 text-on-surface-variant pl-3">B-991A</td>
+<td class="p-2 text-on-surface truncate max-w-[120px]">Cefadroxil 500mg</td>
+<td class="p-2 text-right text-status-critical font-bold">14 Days</td>
+<td class="p-2 text-right">45</td>
+</tr>
+<!-- Warning Expiry (Amber Left Border simulated) -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low border-l-4 border-l-status-warning">
+<td class="p-2 text-on-surface-variant pl-3">B-212X</td>
+<td class="p-2 text-on-surface truncate max-w-[120px]">Omeprazole 20mg</td>
+<td class="p-2 text-right text-status-warning">32 Days</td>
+<td class="p-2 text-right">120</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low border-l-4 border-l-status-warning">
+<td class="p-2 text-on-surface-variant pl-3">B-101Z</td>
+<td class="p-2 text-on-surface truncate max-w-[120px]">Salbutamol Inhaler</td>
+<td class="p-2 text-right text-status-warning">45 Days</td>
+<td class="p-2 text-right">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-2 bg-surface border-t border-outline-variant text-center">
+<button class="font-data-mono text-data-mono text-primary hover:underline uppercase text-[11px]">Manage Expiries</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Simple clock for the dashboard
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('live-time').innerText = now.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB';
+        }
+        setInterval(updateTime, 1000);
+    </script>
+</body></html>
