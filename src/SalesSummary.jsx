@@ -1,0 +1,15 @@
+import React,{useMemo,useState}from'react';
+import{CalendarDays,ReceiptText,TrendingUp,Wallet}from'lucide-react';
+
+const rupiah=value=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(value||0);
+const saleDate=sale=>{if(sale.createdAt)return new Date(sale.createdAt);const match=String(sale.date||'').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);return match?new Date(`${match[3]}-${match[2].padStart(2,'0')}-${match[1].padStart(2,'0')}T00:00:00`):new Date(0)};
+const sameDay=(a,b)=>a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
+const inPeriod=(date,period)=>{const now=new Date();if(period==='today')return sameDay(date,now);if(period==='week'){const start=new Date(now);start.setHours(0,0,0,0);start.setDate(start.getDate()-((start.getDay()+6)%7));return date>=start&&date<=now}if(period==='month')return date.getFullYear()===now.getFullYear()&&date.getMonth()===now.getMonth();return date.getFullYear()===now.getFullYear()};
+const itemProfit=(item,products)=>{const product=products.find(p=>p.id===item.productId);const netQty=Math.max(0,(item.qty||0)-(item.refundedQty||0));const revenue=netQty*(item.price||0);let cost=0;if(item.allocations?.length){cost=item.allocations.reduce((sum,allocation)=>{const batch=product?.batches.find(b=>b.id===allocation.batchId);const netBaseQty=Math.max(0,(allocation.qty||0)-(allocation.returnedQty||0));return sum+netBaseQty*(batch?.purchasePerBase||0)},0)}else{const base=product?.units.find(unit=>unit.default)||product?.units[0];cost=netQty*(item.rate||1)*(base?.purchase||0)}return{revenue,cost}};
+
+export default function SalesSummary({sales,products}){
+ const[period,setPeriod]=useState('today');
+ const summary=useMemo(()=>sales.filter(sale=>inPeriod(saleDate(sale),period)).reduce((result,sale)=>{sale.items.forEach(item=>{const value=itemProfit(item,products);result.revenue+=value.revenue;result.cost+=value.cost});result.transactions+=1;return result},{revenue:0,cost:0,transactions:0}),[sales,products,period]);
+ const labels={today:'Hari ini',week:'Minggu ini',month:'Bulan ini',year:'Tahun ini'};
+ return <section className="sales-summary"><div className="summary-heading"><div><h2>Ringkasan Penjualan</h2><p>Penjualan bersih dan keuntungan setelah pengembalian barang.</p></div><label className="period-filter"><CalendarDays/>PERIODE<select value={period} onChange={event=>setPeriod(event.target.value)}><option value="today">Hari ini</option><option value="week">Minggu ini</option><option value="month">Bulan ini</option><option value="year">Tahun ini</option></select></label></div><div className="sales-cards"><div className="sales-card"><span><Wallet/>TOTAL PENJUALAN</span><strong>{rupiah(summary.revenue)}</strong><small>{labels[period]}</small></div><div className="sales-card profit"><span><TrendingUp/>KEUNTUNGAN BERSIH</span><strong>{rupiah(summary.revenue-summary.cost)}</strong><small>Penjualan dikurangi HPP</small></div><div className="sales-card"><span><ReceiptText/>JUMLAH TRANSAKSI</span><strong>{summary.transactions}</strong><small>{labels[period]}</small></div></div></section>
+}
